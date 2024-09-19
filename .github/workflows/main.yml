@@ -1,0 +1,29 @@
+name: C++ CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up C++
+        uses: actions/setup-cpp@v2
+        with:
+          cpp-version: 14
+
+      - name: Build
+        run: |
+          mkdir build
+          cd build
+          cmake ..
+          make
